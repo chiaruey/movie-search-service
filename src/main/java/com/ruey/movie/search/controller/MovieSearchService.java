@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.ruey.movie.search.model.MovieList;
+
 
 
 @RestController
@@ -29,10 +31,10 @@ public class MovieSearchService {
     private RestTemplate restTemplate;
 
     @RequestMapping
-    public String searchMovie(@RequestParam("query") String query) {
+    public MovieList searchMovie(@RequestParam("query") String query) {
     	String queryUrl = url + PATH + query + "&api_key=" +  apiKey;
     	logger.debug("queryUrl = " + queryUrl);
-        String movieList = restTemplate.getForObject(queryUrl, String.class);
+        MovieList movieList = restTemplate.getForObject(queryUrl, MovieList.class);
         return movieList;
 
     }
