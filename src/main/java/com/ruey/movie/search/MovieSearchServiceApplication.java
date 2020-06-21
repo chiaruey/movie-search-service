@@ -31,7 +31,7 @@ public class MovieSearchServiceApplication {
 	public Docket swaggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/movies-search/*"))
+				.paths(PathSelectors.ant("/movie-search*"))
 				.apis(RequestHandlerSelectors.basePackage("com.ruey"))
 				.build();
 	}

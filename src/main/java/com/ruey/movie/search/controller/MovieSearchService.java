@@ -11,32 +11,31 @@ import org.springframework.web.client.RestTemplate;
 
 import com.ruey.movie.search.model.MovieList;
 
-
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/movies-search")
+@RequestMapping("/movie-search")
 public class MovieSearchService {
-	
-	private String PATH = "/search/movie?query=";
-	
+
+	private static final String PATH = "/search/movie?query=";
+
 	Logger logger = LoggerFactory.getLogger(MovieSearchService.class);
-	
-    @Value("${themoviedb.api.key}")
-    private String apiKey;
 
-    @Value("${themoviedb.url}")
-    private String url;
-    
-    @Autowired
-    private RestTemplate restTemplate;
+	@Value("${themoviedb.api.key}")
+	private String apiKey;
 
-    @RequestMapping
-    public MovieList searchMovie(@RequestParam("query") String query) {
-    	String queryUrl = url + PATH + query + "&api_key=" +  apiKey;
-    	logger.debug("queryUrl = " + queryUrl);
-        MovieList movieList = restTemplate.getForObject(queryUrl, MovieList.class);
-        return movieList;
+	@Value("${themoviedb.url}")
+	private String url;
 
-    }
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@RequestMapping
+	@ApiOperation(value = "Search movies", notes = "Return the movies matching provided query", response = MovieList.class)
+	public MovieList searchMovie(@RequestParam("query") String query) {
+		String queryUrl = url + PATH + query + "&api_key=" + apiKey;
+		logger.debug("queryUrl = " + queryUrl);
+		MovieList movieList = restTemplate.getForObject(queryUrl, MovieList.class);
+		return movieList;
+	}
 }
-

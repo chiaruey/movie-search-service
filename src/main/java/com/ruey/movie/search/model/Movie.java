@@ -5,9 +5,9 @@ import java.util.List;
 public class Movie {
 	private Integer id;
 	private String title;
-	private String voteAverage;
+	private String release_date;
 	private String overview;
-	private String releaseDate;
+	private String vote_average;
 
 	private List<Integer> genre_ids;
 	private String popularity;
@@ -55,14 +55,6 @@ public class Movie {
 		this.title = title;
 	}
 
-	public String getVoteAverage() {
-		return voteAverage;
-	}
-
-	public void setVoteAverage(String voteAverage) {
-		this.voteAverage = voteAverage;
-	}
-
 	public String getOverview() {
 		return overview;
 	}
@@ -71,12 +63,21 @@ public class Movie {
 		this.overview = overview;
 	}
 
-	public String getReleaseDate() {
-		return releaseDate;
+	public String getRelease_date() {
+		return release_date;
 	}
 
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
 	}
+
+	public String getVote_average() {
+		return vote_average;
+	}
+
+	public void setVote_average(String vote_average) {
+		this.vote_average = vote_average;
+	}
+
 
 }
